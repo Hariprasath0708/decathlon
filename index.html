@@ -82,13 +82,18 @@
       <br>
 
       <form>
+        <label id="lname"></label> <Br>
+        <input class="input" id="name" type="name" value="" name="name" size="15" />
+        <div id="rname" class="result"></div>
+        
         <label id="lmobile"></label> <Br>
         <input class="input" id="mobile" type="tel"
           pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
           name="mobile" size="15" value="" />
         <div id="rmobile" class="result"></div>
 
-
+         
+        
         <label id="lemail"></label> <Br>
         <input class="input" id="email" type="email" value="" name="email" size="15" />
         <div id="remail" class="result"></div>
@@ -113,8 +118,10 @@
     // $(document).ready(function () {
     let params = new URLSearchParams(window.location.search)
     // console.log(params.get('language'))
+    
     var lcontext = params.get('lcontext')
     var language = params.get('language')
+    var name = params.get('name')
     var mobile = params.get('mobile')
     var email = params.get('email')
     var context = params.get('context')
@@ -132,6 +139,7 @@
     } 
     
     if (language == 'id') {
+      document.getElementById('name').placeholder = 'Nama';
       document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
       document.getElementById('email').placeholder = 'Email aktif';
       document.getElementById('header').innerHTML = 'Ini adalah rincian pelanggan:';
@@ -141,6 +149,7 @@
       let x = document.getElementById('language');
       x.setAttribute("value", "id");
     } else {
+      document.getElementById('name').placeholder = 'Name';
       document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
       document.getElementById('email').placeholder = 'Enter your active email ID';
       document.getElementById('header').innerHTML = 'These are the details of the customer:';
@@ -151,7 +160,8 @@
       x.setAttribute("value", "en");
     }
 
-    if (mobile && email && context) {
+    if (name && mobile && email && context) {
+      let n = document.getElementById('name')
       let m = document.getElementById('mobile');
       let e = document.getElementById('email');
       let c = document.getElementById('context');
@@ -160,9 +170,11 @@
       e.setAttribute("type", "hidden");
       c.setAttribute("type", "hidden");
       s.style.visibility = "hidden";
+      document.getElementById('rname').innerHTML = name;
       document.getElementById('rmobile').innerHTML = mobile;
       document.getElementById('remail').innerHTML = email;
       document.getElementById('rcontext').innerHTML = context;
+       n.setAttribute("value", name);
       m.setAttribute("value", mobile);
       e.setAttribute("value", email);
       c.setAttribute("value", context);
@@ -174,13 +186,14 @@
 
     // });
     function myFunction() {
+      var name = document.getElementById("name").value;
       var mobile = document.getElementById("mobile").value;
       var email = document.getElementById("email").value;
       var context = document.getElementById("context").value;
-      console.log({ mobile, email, context })
+      console.log({ name,mobile, email, context })
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-      let data = btoa(JSON.stringify({ mobile, email, context }))
-      if (mobile && email && context) {
+      let data = btoa(JSON.stringify({ name,mobile, email, context }))
+      if (name && mobile && email && context) {
         window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
           data: JSON.stringify({
