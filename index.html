@@ -142,6 +142,7 @@
       document.getElementById('name').placeholder = 'Nama';
       document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
       document.getElementById('email').placeholder = 'Email aktif';
+      document.getElementById('context').placeholder = 'Address aktif';
       document.getElementById('header').innerHTML = 'Ini adalah rincian pelanggan:';
       document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
       document.getElementById('lname').innerHTML = 'Nama';
@@ -155,6 +156,7 @@
       document.getElementById('name').placeholder = 'Name';
       document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
       document.getElementById('email').placeholder = 'Enter your active email ID';
+       document.getElementById('context').placeholder = 'Enter your active address';
       document.getElementById('header').innerHTML = 'These are the details of the customer:';
        document.getElementById('lname').innerHTML = 'Name';
       document.getElementById('lmobile').innerHTML = 'Mobile Number';
@@ -204,7 +206,7 @@
           data: JSON.stringify({
             event: {
               code: new Date().getTime().toString(),
-              data
+              data 
             },
           }),
         }), "*");
